@@ -1,5 +1,3 @@
-﻿  stdafx.cpp
-  Tictactoe.cpp
-d:\gameloft\c++\tictactoe\tictactoe\tictactoe.cpp(133): warning C4715: 'checkWin': not all control paths return a value
-  Tictactoe.vcxproj -> D:\GAMELOFT\C++\Tictactoe\Debug\Tictactoe.exe
-  Tictactoe.vcxproj -> D:\GAMELOFT\C++\Tictactoe\Debug\Tictactoe.pdb (Full PDB)
+﻿  Tictactoe.cpp
+  Tictactoe.vcxproj -> D:\GAMELOFT\C++\CPP\Tictactoe\Debug\Tictactoe.exe
+  Tictactoe.vcxproj -> D:\GAMELOFT\C++\CPP\Tictactoe\Debug\Tictactoe.pdb (Full PDB)
