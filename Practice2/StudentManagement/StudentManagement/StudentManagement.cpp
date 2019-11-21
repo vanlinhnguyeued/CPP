@@ -3,9 +3,11 @@
 
 #include "stdafx.h"
 #include<vector>
+#include<fstream>
 #include<iostream>
 #include<stdio.h>
 #include<string>
+#include<sstream>
 using namespace std;
 
 struct Student {
@@ -55,13 +57,31 @@ void DisplayStudentInfor(listStudent *vlist ) {
 		cout << "______Nothing in the list!" << endl;
 	}
 	else {
-		cout << endl << "____________________LIST STUDENT____________________" << endl;
-		cout << "\tID\t\tNAME\t\tScore" << endl;
+		cout << endl << "_______________________LIST STUDENT______________________" << endl;
+		cout << "\tID\t\tFULL NAME\t\tScore" << endl;
 		for (auto i : *vlist) {
 			DisplayAStudentInfor(&i);
 		}
 	}
-	
+}
+string SetDataToFile(Student *student) {
+	string id, score;
+	ostringstream convertID;
+	convertID << student->id;
+	id = convertID.str();
+	ostringstream convertScore;
+	convertScore << student->score;
+	score = convertID.str();
+	return id+student->name + score;
+}
+void SaveToFile(listStudent *vlist) {
+	ofstream outFileListStudents;
+	outFileListStudents.open("ListStudents.txt");
+	for (auto i : *vlist) {
+		outFileListStudents << SetDataToFile(&i) << endl;
+		
+	}
+	outFileListStudents.close();
 }
 int main() {
 	int choice;
@@ -85,9 +105,15 @@ int main() {
 		case 2:
 			DisplayStudentInfor(&vlist);
 			break;
+		case 3:
+			SaveToFile(&vlist);
+			break;
 		case 0:
 			vlist.clear();
 			exit(1);
+			break;
+		default:
+			cout << "Invalid number, please enter again!: \t"<<endl;
 			break;
 		}
 	}
