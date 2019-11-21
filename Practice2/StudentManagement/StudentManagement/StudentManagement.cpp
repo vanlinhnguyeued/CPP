@@ -85,6 +85,10 @@ int main() {
 		case 2:
 			DisplayStudentInfor(&vlist);
 			break;
+		case 0:
+			vlist.clear();
+			exit(1);
+			break;
 		}
 	}
 	system("pause");
