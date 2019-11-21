@@ -1,8 +1,10 @@
 ID	|	FULL NAME	|	Score
 
-1	|	Nguyen Van A	|	1
+1	|	Nguyen Van Linh	|	10
 
-2	|	Nguyen Van B	|	2
+2	|	Nguyen Van A	|	10
 
-3	|	Nguyen Van Linh	|	3
+3	|	Nguyen Van B	|	10
+
+1	|	Nguyen Van B	|	9.75
 

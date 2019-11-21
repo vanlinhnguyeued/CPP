@@ -71,7 +71,7 @@ string SetDataToFile(Student *student) {
 	id = convertID.str();
 	ostringstream convertScore;
 	convertScore << student->score;
-	score = convertID.str();
+	score = convertScore.str();
 	return id+"\t|\t"+student->name+"\t|\t"+score+"\n";
 }
 void SaveToFile(listStudent *vlist) {
