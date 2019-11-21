@@ -72,11 +72,12 @@ string SetDataToFile(Student *student) {
 	ostringstream convertScore;
 	convertScore << student->score;
 	score = convertID.str();
-	return id+student->name + score;
+	return id+"\t|\t"+student->name+"\t|\t"+score+"\n";
 }
 void SaveToFile(listStudent *vlist) {
 	ofstream outFileListStudents;
 	outFileListStudents.open("ListStudents.txt");
+	outFileListStudents << "ID\t|\tFULL NAME\t|\tScore\n" << endl;
 	for (auto i : *vlist) {
 		outFileListStudents << SetDataToFile(&i) << endl;
 		
