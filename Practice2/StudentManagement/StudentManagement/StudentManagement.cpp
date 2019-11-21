@@ -27,6 +27,7 @@ int InputNumberStudent() {
 	}
 	return n;
 }
+
 void InputStudentsInfor(listStudent* vlist, Student *student) {
 
 	cout << "______________Input the student information______________" << endl;
@@ -45,12 +46,28 @@ void InputStudentsInfor(listStudent* vlist, Student *student) {
 	}
 }
 
+void DisplayAStudentInfor(Student *student) {
+	cout << "\t" << student->id << "\t\t" << student->name << "\t\t" << student->score << endl;
+}
+void DisplayStudentInfor(listStudent *vlist ) {
+	
+	if (vlist->empty()) {
+		cout << "______Nothing in the list!" << endl;
+	}
+	else {
+		cout << endl << "____________________LIST STUDENT____________________" << endl;
+		cout << "\tID\t\tNAME\t\tScore" << endl;
+		for (auto i : *vlist) {
+			DisplayAStudentInfor(&i);
+		}
+	}
+	
+}
 int main() {
 	int choice;
 	Student *student = new Student;
 	listStudent vlist;
-	int exitNumber;
-	while (exitNumber==0)
+	while (1)
 	{
 		cout << "______________MENU______________" << endl;
 		cout << "\t1. Input" << endl;
@@ -64,6 +81,9 @@ int main() {
 		switch (choice) {
 		case 1:
 			InputStudentsInfor(&vlist, student);
+			break;
+		case 2:
+			DisplayStudentInfor(&vlist);
 			break;
 		}
 	}
