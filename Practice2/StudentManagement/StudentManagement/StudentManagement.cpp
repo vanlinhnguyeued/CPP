@@ -83,6 +83,18 @@ void SaveToFile(listStudent *vlist) {
 		
 	}
 	outFileListStudents.close();
+	cout << "_________Save successfully!"<<endl;
+}
+void LoadFromFile() {
+	string data;
+	ifstream textfile("ListStudents.txt");
+	cout << "______________READ DATA FROM FILE______________"<<endl;
+	for (istreambuf_iterator<char, char_traits<char> > it(textfile.rdbuf());
+		it != istreambuf_iterator<char, char_traits<char> >(); it++) {
+
+		data += *it;
+	}
+	cout << data.data()<<endl;
 }
 int main() {
 	int choice;
@@ -108,6 +120,9 @@ int main() {
 			break;
 		case 3:
 			SaveToFile(&vlist);
+			break;
+		case 4:
+			LoadFromFile();
 			break;
 		case 0:
 			vlist.clear();
