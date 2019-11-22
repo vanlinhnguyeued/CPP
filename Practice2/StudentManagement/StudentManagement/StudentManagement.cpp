@@ -1,4 +1,4 @@
-// ConsoleApplication2.cpp : Defines the entry point for the console application.
+﻿// ConsoleApplication2.cpp : Defines the entry point for the console application.
 //
 
 #include "stdafx.h"
@@ -20,29 +20,44 @@ typedef vector<Student> listStudent;
 
 
 int InputNumberStudent() {
-	cout << "Input number of customers (n>=1): \t";
+	cout << "________Input number of customers (n>=1):\t";
 	int n; cin >> n;
 	while (!cin || n <= 0) {
-		cout << "Invalid number, please enter again!: \t";
+		cout << "________Invalid number, please enter again!:\t";
 		cin.clear();
 		cin >> n;
 	}
 	return n;
 }
+bool CheckID(listStudent* vlist, int id) {
+	vector<Student>::iterator oneItem;
+	for (oneItem = vlist->begin(); oneItem != vlist->end(); oneItem++) {
+		if (id == oneItem->id)
+			return true;
 
+	}
+	return false;
+
+}
 void InputStudentsInfor(listStudent* vlist, Student *student) {
 
 	cout << "______________Input the student information______________" << endl;
 	int n = InputNumberStudent();
 	for (int i = 0; i < n; i++) {
-		cout << "Input the student information " << i + 1 << ":" << endl;
-		cout << "ID: "; cin >> student->id;
-		cout << "Name: "; cin.ignore(); getline(cin, student->name);
-		cout << "Score: "; cin >> student->score;
-		while (!cin || student->score < 0 || student->score>10) {
-			cout << "Invalid score, please enter again!\n";
+		cout << "________Input the student information " << i + 1 << ":" << endl;
+		cout << "\tID:\t"; cin >> student->id;
+		while (CheckID(vlist, student->id)){
+			cout << "________ID already used, please enter again!"<<endl;
 			cin.clear();
-			cout << "Score: "; cin >> student->score;
+			cout << "\tID: "; cin >> student->id;
+		}
+
+		cout << "\tName:\t"; cin.ignore(); getline(cin, student->name);
+		cout << "\tScore:\t"; cin >> student->score;
+		while (!cin || student->score < 0 || student->score>10) {
+			cout << "________Invalid score, please enter again!\n";
+			cin.clear();
+			cout << "\tScore:\t"; cin >> student->score;
 		}
 		vlist->push_back(*student);
 	}
@@ -54,7 +69,7 @@ void DisplayAStudentInfor(Student *student) {
 void DisplayStudentInfor(listStudent *vlist ) {
 	
 	if (vlist->empty()) {
-		cout << "______Nothing in the list!" << endl;
+		cout << "________Nothing in the list!" << endl;
 	}
 	else {
 		cout << endl << "_______________________LIST STUDENT______________________" << endl;
@@ -83,7 +98,7 @@ void SaveToFile(listStudent *vlist) {
 		
 	}
 	outFileListStudents.close();
-	cout << "_________Save successfully!"<<endl;
+	cout << "________Save successfully!"<<endl;
 }
 void LoadFromFile() {
 	string data;
@@ -109,7 +124,7 @@ int main() {
 		cout << "\t4. Load from file" << endl;
 		cout << "\t0. Exit" << endl;
 		cout << "_________________________________" << endl;
-		cout << "Choose: ";
+		cout << "Choose:\t";
 		cin >> choice;
 		switch (choice) {
 		case 1:
@@ -129,7 +144,7 @@ int main() {
 			exit(1);
 			break;
 		default:
-			cout << "Invalid number, please enter again!: \t"<<endl;
+			cout << "________Invalid number, please enter again!: \t"<<endl;
 			break;
 		}
 	}
