@@ -2,5 +2,5 @@ ID	|	FULL NAME	|	Score
 
 1	|	Nguyen Van Linh	|	9.5
 
-2	|	Le Huy Truyen	|	8.6
+2	|	Le Huy Truyen	|	9.6
 
