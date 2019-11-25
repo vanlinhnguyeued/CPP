@@ -2,14 +2,16 @@
 #include "DengueVirus.h"
 #include<string>
 
+
 using namespace std;
 DengueVirus::DengueVirus()
 {
-	InitResistance();
 	DoBorn();
+	InitResistance();
+	
 }
 
-DengueVirus::DengueVirus(const DengueVirus& otherVR) {
+DengueVirus::DengueVirus(const DengueVirus& otherVR) : Virus(otherVR) {
 	this->m_protein = otherVR.m_protein;
 
 }
@@ -27,7 +29,7 @@ char* DengueVirus::getM_Protein() {
 void DengueVirus::DoBorn()
 {
 	LoadADNInformation();
-	int rannum = 1 + (rand() % (int)(3 - 1 + 1));
+	int rannum = rand() % 3 + 1;
 	if (rannum == 1)
 	{
 		char str[4] = "NS3";
@@ -73,16 +75,17 @@ void DengueVirus::DoDie()
 
 void DengueVirus::InitResistance()
 {
-	if (this->getM_Protein() == "NS3")
+	
+	if (strcmp(m_protein, "NS3")==0)
 	{
-		this->setM_Resistance(1 + (rand() % (int)(10 - 1 + 1)));
+		this->setM_Resistance(rand()%10 +1);
 	}
-	if (this->getM_Protein() == "NS5")
+	if (strcmp(m_protein, "NS5") == 0)
 	{
-		this->setM_Resistance (11 + (rand() % (int)(20 - 11 + 1)));
+		this->setM_Resistance (rand()%20 + 11);
 	}
-	if (this->getM_Protein() == "E")
+	if (strcmp(m_protein, "E") == 0)
 	{
-		this->setM_Resistance(21 + (rand() % (int)(30 - 21 + 1)));
+		this->setM_Resistance(rand()%30 + 21);
 	}
 }

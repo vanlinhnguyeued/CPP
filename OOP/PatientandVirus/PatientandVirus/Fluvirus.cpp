@@ -13,7 +13,8 @@ Fluvirus::~Fluvirus()
 {
 	this->DoDie();
 }
-Fluvirus::Fluvirus(const Fluvirus& otherVR) {
+Fluvirus::Fluvirus(const Fluvirus& otherVR) : Virus(otherVR)
+{
 	this->m_color = otherVR.m_color;
 }
 
@@ -57,12 +58,13 @@ void Fluvirus::DoDie()
 
 void Fluvirus::InitResistance()
 {
+	
 	if (this->getColor()==1)
 	{
-		this->setM_Resistance(10 + (rand() % (int)(20 - 10 + 1)));
+		this->setM_Resistance(rand() % 20 + 10);
 	}
 	else
 	{
-		this->setM_Resistance(10 + (rand() % (int)(15 - 10 + 1)));
+		this->setM_Resistance(rand() % 15 + 10);
 	}
 }

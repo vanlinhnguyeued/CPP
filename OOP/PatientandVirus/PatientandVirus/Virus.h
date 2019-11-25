@@ -19,7 +19,7 @@ public:
 	int getM_Resistance();
 
 	void LoadADNInformation();
-	void ReduceResistance(int medicie_resistance);
+	int ReduceResistance(int medicie_resistance);
 
 	virtual void DoBorn() = 0;
 	virtual list<Virus*> DoClone() = 0;

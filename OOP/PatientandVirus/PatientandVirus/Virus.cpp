@@ -3,10 +3,11 @@
 #include <string>
 #include <iostream>
 #include <fstream>
+#include <stdio.h>
 using namespace std;
 Virus::Virus()
 {
-
+	m_dna = nullptr;
 }
 Virus::Virus(const Virus& otherVR) {
 	this->m_dna = otherVR.m_dna;
@@ -48,7 +49,11 @@ void Virus::LoadADNInformation()
 	this->m_dna[contentFile.size()] = '\0';
 }
 
-void Virus::ReduceResistance(int medicine_resistance)
+int Virus::ReduceResistance(int medicine_resistance)
 {
-	this->setM_Resistance(this->m_resistance - medicine_resistance);
+	m_resistance = m_resistance - medicine_resistance;
+	if (m_resistance <= 0)
+		return 1;
+	else
+		return 0;
 }

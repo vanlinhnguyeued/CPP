@@ -30,29 +30,38 @@ void Patient::InitResistance()
 void Patient::DoStart()
 {
 	this->m_state = 1;
-
-	int numvirus = 10 + (rand() % (int)(20 - 10 + 1));
+	int numvirus = rand() % 20 + 10;
+	cout << "Number virus: " << numvirus << endl;
+	int demDE = 0, demFLU = 0;
 	for (int i = 0; i < numvirus; i++)
 	{
 		if (i % 2 == 0)
 		{
+			demDE++;
 			Virus *deng = new DengueVirus;
 			this->m_virusList.push_back(deng);
+
 		}
 		else
 		{
+			demFLU++;
 			Virus *flu = new Fluvirus;
 			this->m_virusList.push_back(flu);
 		}
 	}
+	cout << "Virus: " << m_virusList.size() << endl;
+	cout << "Vius DE: " << demDE<<endl;
+	cout << "virus FLU: " << demFLU << endl;
 }
 
 void Patient::TakeMedicine(int medicine_resistance)
 {
 	list<Virus*> toAdded;
+	cout << "Medicine resistance: " <<medicine_resistance<< endl;
 	for (list<Virus*>::iterator it = m_virusList.begin(); it != m_virusList.end(); it++)
 	{
-		if ((*it)->getM_Resistance() <= 0)
+		int res = (*it)->ReduceResistance(medicine_resistance);
+		if (res == 1)
 		{
 			Virus* virus = *it;
 			*it = nullptr;
@@ -62,7 +71,7 @@ void Patient::TakeMedicine(int medicine_resistance)
 		}
 		else
 		{
-			list<Virus*> tempLst = (*it)->DoClone();
+			std::list<Virus*> tempLst = (*it)->DoClone();
 			for (auto it2 : tempLst)
 			{
 				toAdded.push_back(it2);
@@ -77,6 +86,8 @@ void Patient::TakeMedicine(int medicine_resistance)
 		
 		m_virusList.push_back(it);
 	}
+	cout << "Number Virus after taking the pill: " << m_virusList.size()<<endl;
+	
 }
 
 void Patient::DoDie()

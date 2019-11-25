@@ -6,9 +6,11 @@
 #include <stdio.h>
 #include <cstdlib>
 #include<iostream>
+#include <ctime>
 
 int main()
 {
+	srand(time(NULL));
 	Patient p;
 	char t = 0;
 	while (p.GetState() == 1)
@@ -23,5 +25,6 @@ int main()
 			p.TakeMedicine(medicine_resistance);
 		}
 	}
+	cout << "Partient die!" << endl;
 	return 0;
 }
