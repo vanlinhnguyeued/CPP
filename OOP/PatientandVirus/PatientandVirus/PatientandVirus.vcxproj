@@ -145,11 +145,17 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DengueVirus.h" />
+    <ClInclude Include="Fluvirus.h" />
+    <ClInclude Include="Patient.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Virus.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="DengueVirus.cpp" />
+    <ClCompile Include="Fluvirus.cpp" />
+    <ClCompile Include="Patient.cpp" />
     <ClCompile Include="PatientAndVirus.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

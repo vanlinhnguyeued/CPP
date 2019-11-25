@@ -1,28 +1,30 @@
-#pragma once
-#include<list>
+#include <cstdlib>
+#include <list>
 
+#pragma once
 using namespace std;
 class Virus
 {
-private: 
+private:
 	char* m_dna;
 	int m_resistance;
 public:
 	Virus();
-	~Virus();
+	Virus(Virus*);
+	virtual ~Virus();
 
-	void setM_DNA(char*);
-	char* getM_DNA();
-	void setM_Resistance(int);
+	void setM_DNA(char *m_dna);
+	char* getM_DAN();
+	void setM_Resistance(int m_resistance);
 	int getM_Resistance();
 
 	void LoadADNInformation();
-	int ReduceResistance(int);
+	void ReduceResistance(int medicie_resistance);
 
-	virtual void DoBorn()=0;
-	virtual list<Virus*> DoClone()=0;
-	virtual void DoDie()=0;
-	virtual void InitResistane()=0;
+	virtual void DoBorn() = 0;
+	virtual list<Virus*> DoClone() = 0;
+	virtual void DoDie() = 0;
+	virtual void InitResistance() = 0;
+
 
 };
-
