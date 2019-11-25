@@ -3,7 +3,7 @@
 #include "Fluvirus.h"
 #include "DengueVirus.h"
 #include <algorithm>
-
+#include<iostream>
 using namespace std;
 Patient::Patient()
 {
@@ -74,6 +74,7 @@ void Patient::TakeMedicine(int medicine_resistance)
 
 	for (auto it : toAdded)
 	{
+		
 		m_virusList.push_back(it);
 	}
 }

@@ -9,7 +9,10 @@ DengueVirus::DengueVirus()
 	DoBorn();
 }
 
+DengueVirus::DengueVirus(const DengueVirus& otherVR) {
+	this->m_protein = otherVR.m_protein;
 
+}
 DengueVirus::~DengueVirus()
 {
 	DoDie();
@@ -51,24 +54,16 @@ void DengueVirus::DoBorn()
 
 std::list<Virus*> DengueVirus::DoClone()
 {
-	DengueVirus *otherVR1 = new DengueVirus;
-	DengueVirus *otherVR2 = new DengueVirus;
+	DengueVirus *otherVR1 = new DengueVirus(*this);
+	DengueVirus *otherVR2 = new DengueVirus(*this);
 	list<Virus*> listVR;
 
-	otherVR1->setM_Protein(this->getM_Protein());
-	otherVR1->setM_DNA(this->getM_DAN());
-	otherVR1->setM_Resistance(this->getM_Resistance());
-
-	otherVR2->setM_Protein(this->getM_Protein());
-	otherVR2->setM_DNA(this->getM_DAN());
-	otherVR2->setM_Resistance(this->getM_Resistance());
 
 	listVR.push_back(otherVR1);
 	listVR.push_back(otherVR2);
 
 
 	return listVR;
-	listVR.clear();
 }
 
 void DengueVirus::DoDie()

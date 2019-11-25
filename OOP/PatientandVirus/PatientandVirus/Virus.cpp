@@ -8,9 +8,9 @@ Virus::Virus()
 {
 
 }
-Virus::Virus(Virus* otherVR) {
-	otherVR->m_dna = this->getM_DAN();
-	otherVR->m_resistance = this->getM_Resistance();
+Virus::Virus(const Virus& otherVR) {
+	this->m_dna = otherVR.m_dna;
+	this->m_resistance = otherVR.m_resistance;
 }
 
 Virus::~Virus()

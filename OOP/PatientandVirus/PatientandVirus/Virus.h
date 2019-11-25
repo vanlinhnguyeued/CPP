@@ -10,7 +10,7 @@ private:
 	int m_resistance;
 public:
 	Virus();
-	Virus(Virus*);
+	Virus(const Virus& other);
 	virtual ~Virus();
 
 	void setM_DNA(char *m_dna);

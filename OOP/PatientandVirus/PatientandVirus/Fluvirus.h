@@ -10,7 +10,7 @@ private:
 public:
 	Fluvirus();
 	~Fluvirus();
-
+	Fluvirus(const Fluvirus& otherVR);
 	void setColor(int m_color);
 	int getColor();
 

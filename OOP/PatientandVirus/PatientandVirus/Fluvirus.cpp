@@ -13,6 +13,10 @@ Fluvirus::~Fluvirus()
 {
 	this->DoDie();
 }
+Fluvirus::Fluvirus(const Fluvirus& otherVR) {
+	this->m_color = otherVR.m_color;
+}
+
 void Fluvirus::setColor(int m_color) {
 	this->m_color = m_color;
 }
@@ -31,12 +35,14 @@ void Fluvirus::DoBorn()
 
 list<Virus*> Fluvirus::DoClone()
 {
-	Fluvirus *otherVR = new Fluvirus;
+	
+	 Fluvirus *otherVR = new Fluvirus(*this);
 	list<Virus*> listVR;
 
-	otherVR->setColor(this->getColor());
+	/*otherVR->setColor(this->getColor());
 	otherVR->setM_DNA(this->getM_DAN());
-	otherVR->setM_Resistance(this->getM_Resistance());
+	otherVR->setM_Resistance(this->getM_Resistance());*/
+	
 
 	listVR.push_back(otherVR);
 
