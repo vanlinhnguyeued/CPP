@@ -10,7 +10,10 @@ Virus::Virus()
 	m_dna = nullptr;
 }
 Virus::Virus(const Virus& otherVR) {
-	this->m_dna = otherVR.m_dna;
+	this->m_dna = new char[48];
+	for (int i = 0; i < 48; i++) {
+		this->m_dna[i] = otherVR.m_dna[i];
+	}
 	this->m_resistance = otherVR.m_resistance;
 }
 
@@ -51,9 +54,6 @@ void Virus::LoadADNInformation()
 
 int Virus::ReduceResistance(int medicine_resistance)
 {
-	m_resistance = m_resistance - medicine_resistance;
-	if (m_resistance <= 0)
-		return 1;
-	else
-		return 0;
+	return m_resistance - medicine_resistance;
+	
 }

@@ -49,7 +49,6 @@ void Patient::DoStart()
 			this->m_virusList.push_back(flu);
 		}
 	}
-	cout << "Virus: " << m_virusList.size() << endl;
 	cout << "Vius DE: " << demDE<<endl;
 	cout << "virus FLU: " << demFLU << endl;
 }
@@ -61,7 +60,7 @@ void Patient::TakeMedicine(int medicine_resistance)
 	for (list<Virus*>::iterator it = m_virusList.begin(); it != m_virusList.end(); it++)
 	{
 		int res = (*it)->ReduceResistance(medicine_resistance);
-		if (res == 1)
+		if (res <= 0)
 		{
 			Virus* virus = *it;
 			*it = nullptr;
@@ -87,6 +86,9 @@ void Patient::TakeMedicine(int medicine_resistance)
 		m_virusList.push_back(it);
 	}
 	cout << "Number Virus after taking the pill: " << m_virusList.size()<<endl;
+	if (m_virusList.size() == 0) {
+		cout << "The patient has healed!" << endl;
+	}
 	
 }
 
