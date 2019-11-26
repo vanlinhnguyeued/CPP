@@ -73,7 +73,7 @@ void Patient::TakeMedicine(int medicine_resistance)
 			{
 				toAdded.push_back(it2);
 			}
-			it++;
+			++it;
 		}
 	}
 
