@@ -54,31 +54,28 @@ void Patient::DoStart()
 }
 
 void Patient::TakeMedicine(int medicine_resistance)
-{
+{	
 	list<Virus*> toAdded;
 	cout << "Medicine resistance: " <<medicine_resistance<< endl;
-	for (list<Virus*>::iterator it = m_virusList.begin(); it != m_virusList.end(); it++)
+	for (list<Virus*>::iterator it = m_virusList.begin(); it != m_virusList.end();)
 	{
 		int res = (*it)->ReduceResistance(medicine_resistance);
 		if (res <= 0)
 		{
-			Virus* virus = *it;
-			*it = nullptr;
-
-			delete virus;
-			virus = nullptr;
+			it = m_virusList.erase(it);
+			
 		}
 		else
 		{
-			std::list<Virus*> tempLst = (*it)->DoClone();
+			
+			list<Virus*> tempLst = (*it)->DoClone();
 			for (auto it2 : tempLst)
 			{
 				toAdded.push_back(it2);
 			}
+			it++;
 		}
 	}
-
-	m_virusList.remove(nullptr);
 
 	for (auto it : toAdded)
 	{
