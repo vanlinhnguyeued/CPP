@@ -37,23 +37,17 @@ void Fluvirus::DoBorn()
 list<Virus*> Fluvirus::DoClone()
 {
 	
-	 Fluvirus *otherVR = new Fluvirus(*this);
+	Fluvirus *otherVR = new Fluvirus(*this);
 	list<Virus*> listVR;
-
-	/*otherVR->setColor(this->getColor());
-	otherVR->setM_DNA(this->getM_DAN());
-	otherVR->setM_Resistance(this->getM_Resistance());*/
-	
-
 	listVR.push_back(otherVR);
-
+	//delete otherVR;
+	otherVR = NULL;
 	return listVR;
 }
 
 void Fluvirus::DoDie()
 {
 	this->setColor(0);
-	this->setM_Resistance(0);
 }
 
 void Fluvirus::InitResistance()

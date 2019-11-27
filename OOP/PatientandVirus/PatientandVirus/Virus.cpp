@@ -15,15 +15,13 @@ Virus::Virus(const Virus& otherVR) {
 		this->m_dna[i] = otherVR.m_dna[i];
 	}
 	this->m_resistance = otherVR.m_resistance;
+
 }
 
 Virus::~Virus()
 {
-	if (m_dna)
-	{
-		delete[] m_dna;
-		m_dna = NULL;
-	}
+	delete[] m_dna;
+	m_dna = NULL;
 }
 void Virus::setM_DNA(char* m_dna) {
 	this->m_dna = m_dna;
@@ -54,6 +52,7 @@ void Virus::LoadADNInformation()
 
 int Virus::ReduceResistance(int medicine_resistance)
 {
-	return m_resistance - medicine_resistance;
+	m_resistance -= medicine_resistance;
+	return m_resistance;
 	
 }

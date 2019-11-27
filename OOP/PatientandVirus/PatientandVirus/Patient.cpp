@@ -4,6 +4,7 @@
 #include "DengueVirus.h"
 #include <algorithm>
 #include<iostream>
+#include<vld.h>
 using namespace std;
 Patient::Patient()
 {
@@ -13,6 +14,7 @@ Patient::Patient()
 
 Patient::~Patient()
 {
+	DoDie();
 }
 
 void Patient::setState(int m_state) {
@@ -35,18 +37,20 @@ void Patient::DoStart()
 	int demDE = 0, demFLU = 0;
 	for (int i = 0; i < numvirus; i++)
 	{
-		if (i % 2 == 0)
+		int k = 0;
+		if (k % 2 == 0)
 		{
 			demDE++;
 			Virus *deng = new DengueVirus;
 			this->m_virusList.push_back(deng);
-
+			deng = NULL;
 		}
 		else
 		{
 			demFLU++;
 			Virus *flu = new Fluvirus;
 			this->m_virusList.push_back(flu);
+			flu = NULL;
 		}
 	}
 	cout << "Vius DE: " << demDE<<endl;
@@ -55,33 +59,34 @@ void Patient::DoStart()
 
 void Patient::TakeMedicine(int medicine_resistance)
 {	
-	list<Virus*> toAdded;
+	
 	cout << "Medicine resistance: " <<medicine_resistance<< endl;
 	for (list<Virus*>::iterator it = m_virusList.begin(); it != m_virusList.end();)
 	{
 		int res = (*it)->ReduceResistance(medicine_resistance);
 		if (res <= 0)
 		{
+			Virus *v = *it;
 			it = m_virusList.erase(it);
-			
+			delete v;
 		}
 		else
 		{
 			
 			list<Virus*> tempLst = (*it)->DoClone();
-			for (auto it2 : tempLst)
-			{
-				toAdded.push_back(it2);
+			list<Virus*>::iterator it2;
+			for (it2 = tempLst.begin(); it2 != tempLst.end(); it2++) {
+				this->m_virusList.push_back(*it2);
+				*it2 = NULL;
 			}
-			++it;
+
+			it++;
 		}
 	}
+	
 
-	for (auto it : toAdded)
-	{
-		
-		m_virusList.push_back(it);
-	}
+
+
 	cout << "Number Virus after taking the pill: " << m_virusList.size()<<endl;
 	if (m_virusList.size() == 0) {
 		cout << "The patient has healed!" << endl;
@@ -92,6 +97,10 @@ void Patient::TakeMedicine(int medicine_resistance)
 void Patient::DoDie()
 {
 	m_state = 0;
-	this->m_virusList.clear();
+	list<Virus*>::iterator it = m_virusList.begin();
+	while (it != m_virusList.end()) {
+		delete *it;
+		it++;         
+	}
 }
 

@@ -17,7 +17,9 @@ DengueVirus::DengueVirus(const DengueVirus& otherVR) : Virus(otherVR) {
 }
 DengueVirus::~DengueVirus()
 {
-	DoDie();
+	//this->DoDie();
+	delete m_protein;
+	m_protein = NULL;
 }
 void DengueVirus::setM_Protein(char* m_protein) {
 	this->m_protein = m_protein;
@@ -35,22 +37,27 @@ void DengueVirus::DoBorn()
 		char str[4] = "NS3";
 		char* protein = new char[strlen(str) + 1];
 		strcpy_s(protein, sizeof(str), str);
-		this->setM_Protein(protein);
-
+		//this->setM_Protein(protein);
+		this->m_protein = protein;
+		protein = NULL;
 	}
 	if (rannum == 2)
 	{
 		char str[4]="NS5"; 
 		char* protein = new char[strlen(str)+1];
 		strcpy_s(protein, sizeof(str), str);
-		this->setM_Protein(protein);
+		//this->setM_Protein(protein);
+		this->m_protein = protein;
+		protein = NULL;
 	}
 	if (rannum == 3)
 	{
 		char str[4] = "E";
 		char* protein = new char[strlen(str) + 1];
 		strcpy_s(protein, sizeof(str), str);
-		this->setM_Protein(protein);
+		//this->setM_Protein(protein);
+		this->m_protein = protein;
+		protein = NULL;
 	}
 }
 
@@ -63,14 +70,18 @@ std::list<Virus*> DengueVirus::DoClone()
 
 	listVR.push_back(otherVR1);
 	listVR.push_back(otherVR2);
-
+	otherVR1 = NULL;
+	otherVR2 = NULL;
+	
 
 	return listVR;
 }
 
 void DengueVirus::DoDie()
 {
-	this->setM_Resistance(NULL);
+	
+//	delete[] m_protein;
+	//this->m_protein = NULL;
 }
 
 void DengueVirus::InitResistance()
